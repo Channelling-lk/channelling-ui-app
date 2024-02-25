@@ -10,6 +10,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/semantic/dist/semantic.min.css}">
     <link rel="stylesheet" th:href="@{/site.css}">
+    <script th:src="@{/javascript/library/jquery.min.js}"></script>
 </head>
 
 <body>
@@ -32,9 +33,19 @@
                         </div>
                     </h1>
 
-                    <br><br>
+                    <br>
 
-                    <form class="ui form" action="" method="post">
+                    <div th:if="${param.error}">
+                        <div class="ui error message">
+                            <div class="header">
+                                Login Failed !
+                            </div>
+                            <p>The username or password is incorrect. </p>
+                        </div>
+                        <br>
+                    </div>
+
+                    <form id="loginForm" class="ui form" th:action="@{/login}" method="post">
                         <div class="field">
                             <label>Member ID / Email / NIC</label>
                             <input type="text" name="txtUserName" placeholder="Enter your Member ID / Email / NIC">
@@ -45,21 +56,16 @@
                             <input type="password" name="txtPassword" placeholder="Password">
                         </div>
 
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" tabindex="0">
-                                <label>Keep me signed in</label>
-                            </div>
+                        <div class="ui right floated buttons">
+                            <button class="ui positive button" type="submit">Login</button>
+                            <div class="or"></div>
+                            <button class="ui  button">Register</button>
                         </div>
 
-                        <button class="ui blue button" type="submit">Submit</button>
                     </form>
 
-                    <br>
+                    <br><br>
                     <button class="fluid ui teal button">Forgot Password</button>
-
-                    <br>
-                    <button class="fluid ui grey button">Sign Up Today ! </button>
 
                 </div>
             </div>
@@ -68,3 +74,24 @@
 </div>
 </body>
 </html>
+
+<script>
+
+    $(document).ready(function () {
+        $("#loginForm").submit(function () {
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: {
+                    username: $("#txtUserName").val(),
+                    password: $("#txtPassword").val()
+                },
+                success: function (data) {
+                    console.log('success');
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
