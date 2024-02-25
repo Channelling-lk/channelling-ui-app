@@ -48,12 +48,12 @@
                     <form id="loginForm" class="ui form" th:action="@{/login}" method="post">
                         <div class="field">
                             <label>Member ID / Email / NIC</label>
-                            <input type="text" name="txtUserName" placeholder="Enter your Member ID / Email / NIC">
+                            <input type="text" id = "username" name="username" placeholder="Enter your Member ID / Email / NIC">
                         </div>
 
                         <div class="field">
                             <label>Password</label>
-                            <input type="password" name="txtPassword" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password">
                         </div>
 
                         <div class="ui right floated buttons">
@@ -77,21 +77,21 @@
 
 <script>
 
-    $(document).ready(function () {
-        $("#loginForm").submit(function () {
-            $.ajax({
-                type: "POST",
-                url: "/login",
-                data: {
-                    userName: $("#txtUserName").val(),
-                    password: $("#txtPassword").val()
-                },
-                success: function (data) {
-                    console.log('success');
-                }
-            });
-
-            return false;
-        });
-    });
+    // $(document).ready(function () {
+    //     $("#loginForm").submit(function () {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/login",
+    //             data: {
+    //                 userName: $("#txtUserName").val(),
+    //                 password: $("#txtPassword").val()
+    //             },
+    //             success: function (data) {
+    //                 console.log('success');
+    //             }
+    //         });
+    //
+    //         return false;
+    //     });
+    // });
 </script>
