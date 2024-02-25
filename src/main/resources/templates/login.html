@@ -8,7 +8,7 @@
 
 
     <title th:text="${title}"></title>
-    <link rel="stylesheet" type="text/css" th:href="@{/semantic/dist/semantic.min.css}">
+    <link rel="stylesheet" type="text/css" href="webjars/fomantic-ui/dist/semantic.min.css"/>
     <link rel="stylesheet" th:href="@{/site.css}">
     <script th:src="@{/javascript/library/jquery.min.js}"></script>
 </head>
@@ -83,7 +83,7 @@
                 type: "POST",
                 url: "/login",
                 data: {
-                    username: $("#txtUserName").val(),
+                    userName: $("#txtUserName").val(),
                     password: $("#txtPassword").val()
                 },
                 success: function (data) {

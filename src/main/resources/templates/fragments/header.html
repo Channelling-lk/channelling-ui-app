@@ -8,7 +8,7 @@
 
 
     <title th:text="${title}"></title>
-    <link rel="stylesheet" type="text/css" th:href="@{/semantic/dist/semantic.min.css}">
+    <link rel="stylesheet" type="text/css" href="webjars/fomantic-ui/dist/semantic.min.css">
     <link rel="stylesheet" th:href="@{../../static/site.css}">
 
     <style type="text/css">
@@ -115,12 +115,8 @@
 
 
     </style>
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-
-    <script src="/semantic/dist/semantic.min.js"></script>
+    <script src="webjars/jquery/dist/jquery.min.js"></script>
+    <script src="webjars/fomantic-ui/dist/semantic.min.js"></script>
 
     <script>
         $(document)

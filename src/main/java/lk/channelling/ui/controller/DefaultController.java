@@ -15,22 +15,25 @@
  */
 package lk.channelling.ui.controller;
 
-import lk.channelling.ui.model.LoginForm;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@Slf4j
-public class UserController {
+public class DefaultController {
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody LoginForm loginForm) {
-        return "success";
+    @GetMapping({"/", "/index", "/home"})
+    public ModelAndView home(Model model) {
+        model.addAttribute("title", "Home");
+        return new ModelAndView("index");
     }
 
+    @GetMapping("/login")
+    public ModelAndView login(Model model) {
+        model.addAttribute("title", "Login");
+        return new ModelAndView("login");
+    }
 
 }

@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lk.channelling.ui.controller;
+package lk.channelling.ui.model;
 
-import lk.channelling.ui.model.LoginForm;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Controller
-@Slf4j
-public class UserController {
-
-    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody LoginForm loginForm) {
-        return "success";
-    }
-
+@AllArgsConstructor
+@Getter
+@Setter
+public class LoginForm {
+    private String userName;
+    private String password;
 
 }

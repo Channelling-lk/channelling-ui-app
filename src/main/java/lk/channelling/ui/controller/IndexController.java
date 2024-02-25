@@ -23,9 +23,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-    @GetMapping({"/", "/index", "/home"})
-    public ModelAndView index(Model model) {
-        model.addAttribute("title", "Home");
-        return new ModelAndView("index");
-    }
 }
