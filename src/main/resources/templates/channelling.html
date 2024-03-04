@@ -26,25 +26,25 @@
                 <input placeholder="Doctor's Name" type="text">
             </div>
 
-            <div class="three wide field">
+            <div class="four wide field">
                 <label>Specialization</label>
-                <select class="ui fluid dropdown" name="ddlSpecialization">
-                    <option value="">State</option>
-                    <option value="AL">Alabama</option>
-                </select>
+
+                <div class="ui fluid search clearable selection dropdown specialization">
+                    <input type="hidden" name="city">
+                    <i class="dropdown icon"></i>
+                    <div class="text">Search</div>
+                </div>
             </div>
 
             <div class="four wide field">
                 <label>Hospital</label>
                 <select class="ui fluid dropdown">
-
-
                     <option value="">Hospital</option>
                     <option value="AL">Alabama</option>
                 </select>
             </div>
 
-            <div class="two wide field">
+            <div class="three wide field">
                 <label>Date</label>
                 <div class="ui calendar" id="standard_calendar">
                     <div class="ui fluid input left icon">
@@ -65,22 +65,20 @@
             </div>
         </div>
     </div>
-</div>
-<!--End of Page Content-->
 
-<div th:insert="~{footer}"></div>
+    <!--End of Page Content-->
+
+    <div th:insert="~{footer}"></div>
+
+    <script>
+        $('.ui.dropdown.specialization')
+            .dropdown({
+                    apiSettings: {url: 'http://localhost:8080/api/v1/specialization/all'},
+                    filterRemoteData: true
+                }
+            );
+    </script>
 
 </div>
 </body>
-
-<script>
-
-    $('#ddlSpecialization')
-        .dropdown({
-                apiSettings: {url: 'http://localhost:8080/api/v1/specialization/all'},
-                filterRemoteData: true
-            }
-        );
-</script>
-
 </html>
