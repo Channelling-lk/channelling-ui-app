@@ -13,24 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lk.channelling.ui.controller;
+package lk.channelling.ui.service;
 
-import lk.channelling.ui.model.LoginForm;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-@Controller
-@Slf4j
-public class UserController {
+@Service
+public interface RestTemplateService {
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody LoginForm loginForm) {
-        return "success";
-    }
-
-
+    public ResponseEntity<?> getForObject(String url, HttpMethod httpMethod,Object data, Object clazz);
 }

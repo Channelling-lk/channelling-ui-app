@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DefaultController {
 
+
     @GetMapping({"/", "/index", "/home"})
     public ModelAndView home(Model model) {
         model.addAttribute("title", "Home");
@@ -35,5 +36,12 @@ public class DefaultController {
         model.addAttribute("title", "Login");
         return new ModelAndView("login");
     }
+
+    @GetMapping("/channelling")
+    public ModelAndView channelling(Model model) {
+        model.addAttribute("title", "Channel Your Doctor");
+        return new ModelAndView("channelling");
+    }
+
 
 }

@@ -27,8 +27,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -58,17 +58,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/login", "/", "/index")
-                        .permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(request ->
+                        request.requestMatchers("/login", "/login/**", "/", "/index", "/home", "webjars/**", "/javascript/**", "*.css", "/assets/**", "/static/**")
+                                .permitAll().anyRequest().authenticated())
                 .formLogin(login -> login.loginPage("/login")
                         .defaultSuccessUrl("/index", true)
                         .failureUrl("/login?error=true"))
                 .logout(logout -> logout.logoutUrl("/logout")
                         .deleteCookies("JSESSIONID")
-                        .logoutSuccessHandler(logout.getLogoutSuccessHandler()));
+                        .logoutSuccessUrl("/index").permitAll());
 
         return http.build();
 
     }
-
 }
