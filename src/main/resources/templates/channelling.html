@@ -23,7 +23,12 @@
         <div class="fields">
             <div class="four wide field">
                 <label>Doctor's Name</label>
-                <input placeholder="Doctor's Name" type="text">
+
+                <div class="ui fluid search clearable selection dropdown doctors">
+                    <input type="hidden" name="doctors">
+                    <i class="dropdown icon"></i>
+                    <div class="text">Search</div>
+                </div>
             </div>
 
             <div class="four wide field">
@@ -86,6 +91,11 @@
                     filterRemoteData: true
                 }
             );
+
+        $('#standard_calendar')
+            .calendar({
+                type: 'date',
+            });
     </script>
 
 </div>
