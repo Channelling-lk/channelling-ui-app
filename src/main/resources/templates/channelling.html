@@ -78,6 +78,13 @@
     <div th:insert="~{footer}"></div>
 
     <script>
+        $('.ui.dropdown.doctors')
+            .dropdown({
+                    apiSettings: {url: 'http://localhost:8080/api/v1/doctor/all'},
+                    filterRemoteData: true
+                }
+            );
+
         $('.ui.dropdown.specialization')
             .dropdown({
                     apiSettings: {url: 'http://localhost:8080/api/v1/specialization/all'},
