@@ -1,7 +1,10 @@
 <html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       xmlns:th="http://www.thymeleaf.org">
 
-<div class="ui secondary  menu">
+<div class="ui stackable menu">
+    <div class="item">
+        <img th:src="@{/assets/images/logo.png}" style="width: 80px">
+    </div>
     <a class="item" th:href="@{/}">
         <i class="home icon"></i>
         Home
@@ -12,13 +15,27 @@
         Channelling
     </a>
 
+    <div sec:authorize="isAuthenticated()" th:remove="tag">
+        <div class="ui dropdown item">
+            <i class="cogs icon"></i>
+            Administration
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" th:href = "@{/country}">Country</a>
+                <a class="item" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+
     <div class="right menu">
-        <div class="item">
-            <div class="ui icon input">
+
+        <div class="ui category search item">
+            <div class="ui transparent icon input">
                 <input placeholder="Search..." type="text">
                 <i class="search link icon"></i>
             </div>
         </div>
+
 
         <div sec:authorize="isAuthenticated()" th:remove="tag">
             <div class="ui dropdown item">
@@ -27,28 +44,22 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item">User Profile</a>
-                    <a class="item">Russian</a>
-                    <a class="item">Spanish</a>
+                    <a class="item" th:href="@{/logout}">Logout</a>
                 </div>
-            </div>
-
-            <div class="item">
-                <a class="ui red button" th:href="@{/logout}">
-                    <i class="sign out icon"></i>Logout
-                </a>
             </div>
         </div>
 
         <div sec:authorize="isAnonymous()" th:remove="tag">
-            <div class="item">
-                <a class="ui primary button" th:href="@{/login}">
-                    <i class="sign in icon"></i>Sign In</a>
-            </div>
+            <a class="item" th:href="@{/channelling}">
+                <i class="sign in icon"></i>
+                Login
+            </a>
+
+            <a class="item" th:href="@{/signin}">Sign-in</a>
         </div>
 
-        <div class="ui dropdown item">
-            Language
-            <i class="dropdown icon"></i>
+        <div class="ui dropdown icon item">
+            <i class="wrench icon"></i>
             <div class="menu">
                 <a class="item">English</a>
                 <a class="item">Sinhala</a>
