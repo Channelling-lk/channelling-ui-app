@@ -1,0 +1,73 @@
+<!--Header files-->
+<div th:insert="~{header}"></div>
+
+<body>
+<!--Sidebar container-->
+
+<div class="pusher">
+    <div th:insert="~{nav-bar}"></div>
+
+    <div class="ui raised segment">
+
+        <div class="ui breadcrumb">
+            <a class="section">Home</a>
+            <i class="right chevron icon divider"></i>
+            <a class="section">Registration</a>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">Personal Information</div>
+        </div>
+    </div>
+
+
+    <!--Page Content-->
+    <div class="ui raised segment">
+        <h4 class="ui header">
+            <i class="settings icon"></i>
+            <div class="content">
+                Manage Countries
+                <div class="sub header">Add / Edit Countries</div>
+            </div>
+        </h4>
+
+        <table id="myTable" class="ui celled table" style="width:100%">
+            <thead>
+            <tr>
+                <th>Country Code</th>
+                <th>Country Name</th>
+                <th>ISO Code</th>
+                <th>Status</th>
+                <th>Created User</th>
+                <th>Created Date/Time</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+            <tr>
+                <th>Country Code</th>
+                <th>Country Name</th>
+                <th>ISO Code</th>
+                <th>Status</th>
+                <th>Created User</th>
+                <th>Created Date/Time</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!--End of Page Content-->
+
+    <div th:insert="~{footer}"></div>
+
+</div>
+<script>
+    $(document)
+        .ready(function () {
+            $("#myTable").DataTable(
+                {
+                    processing: true,
+                    serverSide: true,
+                    ajax: {url: "/country/data", dataSrc: ""}
+                });
+        });
+</script>
+</body>
+</html>

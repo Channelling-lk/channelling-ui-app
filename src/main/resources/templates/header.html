@@ -8,26 +8,16 @@
 
 
     <title th:text="${title}"></title>
-    <link href="webjars/fomantic-ui/dist/semantic.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/webjars/fomantic-ui/dist/semantic.min.css}" rel="stylesheet" type="text/css">
     <link href="webjars/fomantic-ui/dist/components/dropdown.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" th:href="@{/site.css}">
+
 
     <script src="webjars/jquery/dist/jquery.min.js"></script>
     <script src="webjars/fomantic-ui/dist/semantic.min.js"></script>
     <script src="webjars/fomantic-ui/dist/components/dropdown.min.js"></script>
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
 
 
-
-    <script>
-        $(document)
-            .ready(function () {
-                // create sidebar and attach to menu open
-                $('.context.example .ui.sidebar')
-                    .sidebar({
-                        context: $('.context.example .bottom.segment')
-                    })
-                    .sidebar('attach events', '.context.example .menu .item')
-                ;
-            });
-    </script>
 </head>
