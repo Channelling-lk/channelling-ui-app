@@ -15,20 +15,24 @@
  */
 package lk.channelling.ui.controller.admin;
 
-import org.springframework.stereotype.Controller;
+import lk.channelling.ui.model.PageArray;
+import lk.channelling.ui.model.PagingRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-@Controller
+@RestController
 @RequestMapping("/country")
 public class CountryController {
+
+    @Autowired
+    RestTemplate restTemplate;
 
 
     @GetMapping()
@@ -37,12 +41,18 @@ public class CountryController {
         return new ModelAndView("country");
     }
 
-    @GetMapping("/data")
-    @ResponseBody
-    public List<Object[]> getData() {
-        List<Object[]> data = new ArrayList<>();
+    @PostMapping("/data")
+    public PageArray getData(@RequestBody PagingRequest pagingRequest) {
 
-        data.add(new Object[]{"LK", "Sri Lanka", "LK", "ACTIVE", "Chinthaka", new Date()});
-        return data;
+        restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/api/v1/countries/data";
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> entity = new HttpEntity<>(pagingRequest, headers);
+
+        ResponseEntity<PageArray> response = restTemplate.postForEntity(url, entity, PageArray.class);
+        return response.getBody();
     }
 }

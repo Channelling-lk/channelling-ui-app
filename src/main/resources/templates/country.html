@@ -36,8 +36,8 @@
                 <th>Country Name</th>
                 <th>ISO Code</th>
                 <th>Status</th>
-                <th>Created User</th>
-                <th>Created Date/Time</th>
+                <th>Created Date / Time</th>
+                <th>Created By</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -47,8 +47,8 @@
                 <th>Country Name</th>
                 <th>ISO Code</th>
                 <th>Status</th>
-                <th>Created User</th>
-                <th>Created Date/Time</th>
+                <th>Created Date / Time</th>
+                <th>Created By</th>
             </tr>
             </tfoot>
         </table>
@@ -63,9 +63,18 @@
         .ready(function () {
             $("#myTable").DataTable(
                 {
-                    processing: true,
-                    serverSide: true,
-                    ajax: {url: "/country/data", dataSrc: ""}
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "type": 'post',
+                        "url": "country/data",
+                        "dataType": 'json',
+                        "contentType": "application/json",
+                        "data": function (d) {
+                            return JSON.stringify(d);
+                        },
+
+                    }
                 });
         });
 </script>
