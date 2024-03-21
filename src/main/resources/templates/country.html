@@ -38,6 +38,7 @@
                 <th>Status</th>
                 <th>Created Date / Time</th>
                 <th>Created By</th>
+                <th></th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -49,6 +50,7 @@
                 <th>Status</th>
                 <th>Created Date / Time</th>
                 <th>Created By</th>
+                <th></th>
             </tr>
             </tfoot>
         </table>
@@ -73,10 +75,24 @@
                         "data": function (d) {
                             return JSON.stringify(d);
                         },
+                    },
+                    columnDefs: [
+                        {  targets: 6,
+                            render: function (data, type, row, meta) {
+                                return '<input type="button" class="name" id=n-"' + meta.row + '" value="Name"/><input type="button" class="salary" id=s-"' + meta.row + '" value="Salary"/>';
+                            }
 
-                    }
+                        }
+                    ],
+                    select: true
                 });
         });
+
+    $('#example tbody').on('click', '.name', function () {
+        var id = $(this).attr("id").match(/\d+/)[0];
+        var data = $('#example').DataTable().row( id ).data();
+        console.log(data[0]);
+    });
 </script>
 </body>
 </html>
